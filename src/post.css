@@ -1,0 +1,115 @@
+.container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .post-item {
+    padding: 15px;
+    border: 1px solid #ccc;
+    margin: 5px 0;
+    background-color: #f9f9f9;
+  }
+  
+  /* BlogDetails.css */
+  
+  .blog-details {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .blog-body {
+    margin-top: 20px;
+  }
+  
+  .comment-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .comment-item {
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .add-post-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  /* AddPostForm.css */
+  
+  .add-post-form {
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+  }
+  
+  .add-post-form h2 {
+    margin-bottom: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+  }
+  .addpost{
+    margin-right: 190px;
+  }
+  button{
+    border: none;
+    margin-left: 20px;
+    background-color: #007bff;
+    border-radius: 20px;
+    padding: 5px 20px;
+    
+   
+  }
+  .link{
+    text-decoration:none ;
+    color: #ffffff;
+    font-weight: 500;
+  }
+  .posttitle{
+    padding: 20px;
+    text-align: start;
+  }
+  .postbutton{
+    padding: 10px;
+  }
+ 
