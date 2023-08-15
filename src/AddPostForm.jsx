@@ -1,81 +1,61 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function AddPostForm() {
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
-
-  const [message, setMessage] = useState('');
+  const [inputval, setInputval] = useState({
+    userId: 11, // Set userId to 1 by default
+    title: "",
+    body: "",
+  });
+ 
   const [showMessage, setShowMessage] = useState(false);
+  const Navigation = useNavigate()
 
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
+  const handleChange = (e) => {
+    setInputval({ ...inputval, [e.target.name]: e.target.value });
   };
 
-  const handleBodyChange = (e) => {
-    setBody(e.target.value);
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    const newPost = {
-      userId: 1, // Set userId to 1 by default
-      title: title,
-      body: body,
-    };
-
-    axios.post('https://jsonplaceholder.typicode.com/posts', newPost)
-      .then(response => {
-        setTitle('');
-        setBody('');
-
-    setMessage(response.data); // Assuming the API response has a 'title' field
-        setShowMessage(true);
-
-        const timeout = setTimeout(() => {
-          setShowMessage(false);
-        }, 5000);
-
-        return () => clearTimeout(timeout);
+  const handleSubmi = () => {
+    try {
+       axios.post('https://jsonplaceholder.typicode.com/posts', inputval,).then(function (result) {
+        
+        if (result.status=== 201) {
+          setShowMessage([result.data,]);
+          
+          Navigation("/")
+        }
+        
       })
-      .catch(error => {
-        console.error('Error adding post:', error);
-      });
-  };
-
+    }
+    catch (error) {
+      console.log(error, "error")
+    }
+  }
   return (
     <div className="add-post-form">
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="title" className='fs-4 fw-bold mt-5 text-start'>Title</label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={handleTitleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="body" className='fs-4 fw-bold text-start'>Body</label>
-          <textarea
-            id="body"
-            value={body}
-            onChange={handleBodyChange}
-            required
-          />
-        </div>
-        <button type="submit" className='w-50'>Add Post</button>
-      </form>
-      <br/>
-      {showMessage && (
-        <div className="message">
-          <div class="alert alert-success" role="alert">
-          {message.id} Data inserted successfully!
-</div>
-        </div>
-      )}
+      <div className="form-group">
+        <label htmlFor="title" className='fs-4 fw-bold mt-5 text-start'>Title</label>
+        <input
+          type="text"
+          name='title'
+          value={inputval.title}
+          onChange={(e) => handleChange(e)}
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="body" className='fs-4 fw-bold text-start'>Body</label>
+        <textarea
+          name='body'
+          value={inputval.body}
+          onChange={(e) => handleChange(e)}
+        />
+      </div>
+     
+      <button className='w-50' onClick={handleSubmi}>add post</button>
+      
     </div>
   );
 }

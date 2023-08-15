@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams , useNavigate} from 'react-router-dom';
 
 function EditPost() {
   const { id } = useParams();
@@ -11,7 +11,7 @@ function EditPost() {
 
   const [message, setMessage] = useState('');
   const [showMessage, setShowMessage] = useState(false);
-
+  const Navigation = useNavigate()
 
   useEffect(() => {
     axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`)
@@ -31,14 +31,13 @@ function EditPost() {
 
     axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, postData)
       .then(response => {
-
-
-        setMessage(response.data); // Assuming the API response has a 'title' field
+        // setMessage(response.data); // Assuming the API response has a 'title' field
         setShowMessage(true);
+        Navigation("/")
 
         const timeout = setTimeout(() => {
           setShowMessage(false);
-        }, 5000);
+        }, 3000);
 
         return () => clearTimeout(timeout);
       })
